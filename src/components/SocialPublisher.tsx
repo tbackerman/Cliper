@@ -74,9 +74,12 @@ export const SocialPublisher: React.FC<SocialPublisherProps> = ({
         }),
       });
 
-      const json = await res.json();
-      if (json.success && json.caption) {
-        setCustomCaption(json.caption);
+      const contentType = res.headers.get('content-type') || '';
+      if (contentType.includes('application/json')) {
+        const json = await res.json();
+        if (json.success && json.caption) {
+          setCustomCaption(json.caption);
+        }
       }
     } catch (err) {
       console.error('Error generating caption:', err);
