@@ -1,0 +1,6 @@
+{
+  "name": "ClipViral AI - Short Video Clipper & Publisher",
+  "description": "Platform pemotong video pendek otomatis AI, editor 9:16, auto-publish TikTok & Instagram, cloud storage, dan analitik performa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
