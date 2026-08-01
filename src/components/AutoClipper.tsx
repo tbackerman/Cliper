@@ -65,9 +65,17 @@ export const AutoClipper: React.FC<AutoClipperProps> = ({
         body: JSON.stringify(payload),
       });
 
-      const json = await res.json();
+      const contentType = res.headers.get('content-type') || '';
+      let json: any = {};
 
-      if (!json.success || !json.data) {
+      if (contentType.includes('application/json')) {
+        json = await res.json();
+      } else {
+        const text = await res.text();
+        throw new Error(`Respon server (${res.status}): ${text.slice(0, 100)}`);
+      }
+
+      if (!res.ok || !json.success || !json.data) {
         throw new Error(json.error || 'Gagal menerima rekomendasi klip dari AI.');
       }
 
